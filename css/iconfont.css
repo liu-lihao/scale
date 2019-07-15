@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_1293164_mv6bhcb6mbk.eot?t=1563024679552'); /* IE9 */
+    src: url('//at.alicdn.com/t/font_1293164_mv6bhcb6mbk.eot?t=1563024679552#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAANsAAsAAAAAB8QAAAMeAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDLIJuATYCJAMMCwgABCAFhG0HNhu0BsieBXYbdVAI0tMKO3R+MIyHr/1+5+7ufx/zphbpPp3EkFRKgChWItPpTCckQvFESP8nu8/3oTlrDlYAL2b279esAk/g9sAuUn+bolGnSqiuTJtfC/gJeiL6P4eLWxZQNH+DA0lxjslRL0vjnvcCGmveJruNJ+i3yO4I0nrGfgIthjRwrK/ZtAv8CmtYIC5VRQB/TqswCkOTUAFzi3gGj6Z043wLPIUfH3/awk9Sy6yDNo4nZRj5LPzzzcXjHA5lDnw8M4RFZCwAhdgGrVtccXSBS4smdbMzK0VIYwXicUKuLq7sf3gkQVSs/DYwQ2KJz0KXm8q+Yf5Z75VBhSZcAXgBC9sHV0ltM/sSK8zEqUyYzkqazXHMiL40u1QpQWcdeP9r14ffuz/93fvxTxDNZLtmc5KmsyDxiM89pL+dQuh2xuG6nk1IupuGs+06HJ7mmZlTt7P37PLosmcu5ezdQ5czeydr915xVl3KrifdwP1UeuXXNM1lmHdKXpffuJM7yrvNImxPmD7nyd0G7rvr5xu4v7EmOuB6mb2ufdX5relVYBey/RV+G8FIPvLak9hWw6LXlI2FtN3A1InMk2knMxV7xZYqivqEbQkANrbQzBN4zxUbjgE0uL7nYwCNXV/y2/6r4N93zdGUgX9NCvjY+r/Q0+CG9jmaJATe32lWHFBEgZWdC0rAPDGRbfDee64WLfgnxdDjS397P0jNoUnkYUjqBiFrMoEomAWoabUIlSZL0GLe2sWtehlcojRjzjUEocsLSDq8QdblHaJgPkPNgFWodIULWmxGxpqtpkJF4wYRLCJj8TRWJRajjsFCUeEOohyPCEZWEOL3EMNUA7i1qaWYWEtixBhjgnlCabMsiqnBongNOoxEIgxrBgsRyWoKWpbW19xMoTdqklgUkDUGQmAhZJjoNEwlYWKoX9+CSu+/A6E4LkJgMMpqjHsQBpPaOtaqSUsLxFpprFXZtTzEdIKijcVCYZSBicLWIDMRsaMMpsG9QgiJpUmwR1jTp5lUo22lTfPLo8+3AVpY2+VIkaMoB0w77ZEiRDAAAAAA') format('woff2'),
+    url('//at.alicdn.com/t/font_1293164_mv6bhcb6mbk.woff?t=1563024679552') format('woff'),
+    url('//at.alicdn.com/t/font_1293164_mv6bhcb6mbk.ttf?t=1563024679552') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_1293164_mv6bhcb6mbk.svg?t=1563024679552#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .iconcopy:before {
+    content: "\e6e0";
+  }
+  
+  .iconclear:before {
+    content: "\e61c";
+  }
+  

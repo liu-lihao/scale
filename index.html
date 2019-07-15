@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算比例</title>
+  <link rel="stylesheet" href="./css/iconfont.css">
+  <style>
+    html,body,.container{
+      width:100%;
+      height:100%;
+      margin:0;
+      padding:0;
+      background-color: #21252b;
+    }
+    .container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display:none;
+    }
+    .container-show{
+      display:flex;
+    }
+    .container input{
+      width:38vw;
+      height: 14.25vw;
+      font-size: 10vw;
+      border:none;
+      outline:none;
+      background-color: #282c34;
+      color:#abb2bf;
+      padding: 0 1.5vw;
+      border-radius: 1.6vw;
+    }
+    .container input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    .container input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+    .container .center{
+      width: 15vw;
+      font-size: 10vw;
+      text-align: center;
+      user-select: none;
+      color:#98c379;
+    }
+    .container .unequal{
+      color: #e06c60;
+    }
+    .container .line{
+      height:1px;
+      width:100%;
+      background-color: #3b4048;
+      margin: 1vw 0;
+    }
+    .input-wrap{
+      position:relative;
+      overflow: hidden;
+    }
+    .input-wrap .clear,.input-wrap .copy{
+      color:#c5c5c5;
+      font-size: 10vw;
+      position:absolute;
+      top:50%;
+      right: -8vw;
+      opacity: 0;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: all .6s;
+    }
+    .input-wrap .copy,.input-wrap-copy .clear{
+      display:none;
+    }
+    .input-wrap-copy .copy{
+      display: block;
+    }
+    .input-wrap-copy:hover .copy,.input-wrap:hover .clear{
+      right:1vw;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" :class="showFlag ? 'container-show' : ''" id="app">
+    <div class="right">
+      <div class="input-wrap" :class=" (!ru && allPh.ruPh) ? 'input-wrap-copy' :''">
+        <input type="number" v-model="ru" :placeholder="allPh.ruPh" ref="ru">
+        <div class="iconfont iconclear clear" @click="handleClear('ru')"></div>
+        <div class="iconfont iconcopy copy" @click="handleCopy('ru')"></div>
+      </div>
+      <div class="line"></div>
+      <div class="input-wrap" :class=" (!rd && allPh.rdPh) ? 'input-wrap-copy' :''">
+        <input type="number" v-model="rd" :placeholder="allPh.rdPh" ref="rd">
+        <div class="iconfont iconclear clear" @click="handleClear('rd')"></div>
+        <div class="iconfont iconcopy copy" @click="handleCopy('rd')"></div>
+      </div>
+    </div>
+    <div class="center" :class="allPh.isEquality? '' : 'unequal'">
+      {{allPh.isEquality ? '=' : '≠'}}
+    </div>
+    <div class="left">
+      <div class="input-wrap" :class=" (!lu && allPh.luPh) ? 'input-wrap-copy' :''">
+        <input type="number" v-model="lu" :placeholder="allPh.luPh" ref="lu">
+        <div class="iconfont iconclear clear" @click="handleClear('lu')"></div>
+        <div class="iconfont iconcopy copy" @click="handleCopy('lu')"></div>
+      </div>
+      <div class="line"></div>
+      <div class="input-wrap" :class=" (!ld && allPh.ldPh) ? 'input-wrap-copy' :''">
+        <input type="number" v-model="ld" :placeholder="allPh.ldPh" ref="ld">
+        <div class="iconfont iconclear clear" @click="handleClear('ld')"></div>
+        <div class="iconfont iconcopy copy" @click="handleCopy('ld')"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+let app = new Vue({
+  el: '#app',
+  data: {
+    showFlag:false,
+    ru:'',
+    rd:'',
+    lu:'',
+    ld:'',
+  },
+  computed:{
+    allPh(){
+      // 只要 rd或ld 有一个不符合 !='' && ===0 则直接为0
+      //如果4个都为空  =
+      //如果2/3个都为空 !=
+      //如果1个为空
+        //则显示结果 否则 !=
+      //如果都不为空
+        // 又如果 ru/rd == lu/ld  则= 否则!=
+      let result = {
+        ruPh:'',
+        rdPh:'',
+        luPh:'',
+        ldPh:'',
+        isEquality:false
+      };
+      const spaceNum =[this.ru,this.rd,this.lu,this.ld].filter(item=>item==='').length;
+      if(  (this.rd !== '' && this.rd == 0) || (this.ld !== '' && this.ld == 0) || (spaceNum == 2 || spaceNum == 3) ){
+        //啥也不干
+      }else if( spaceNum == 4  || ( spaceNum == 0 && (this.ru/this.rd == this.lu/this.ld) )){
+        result.isEquality = true;
+      }else if(spaceNum == 1){
+        if(this.ru === ''){
+          result.ruPh = (this.lu * this.rd / this.ld).toFixed(2) - 0;
+        }else if(this.rd === ''){
+          if(this.lu == 0){
+            return result;
+          }
+          result.rdPh = (this.ld * this.ru / this.lu).toFixed(2) - 0;
+        }else if(this.lu === ''){
+          result.luPh = (this.ru * this.ld / this.rd).toFixed(2) - 0;
+        }else if(this.ld === ''){
+          if(this.ru == 0){
+            return result;
+          }
+          result.ldPh = (this.rd * this.lu / this.ru).toFixed(2) - 0;
+        }
+        result.isEquality = true;
+      }
+      return result;
+    }
+  },
+  methods:{
+    handleClear(msg){
+      this[msg] = '';
+    },
+    handleCopy(msg){
+      this[msg] = this.allPh[msg + 'Ph'];
+      this.$nextTick(()=>{
+        this.$refs[msg].select();
+        document.execCommand('Copy','false',null);
+        this[msg] = '';
+      });
+    }
+  },
+  mounted(){
+    this.showFlag = true;
+  }
+})
+</script>
+
+</html>
